@@ -1,0 +1,12 @@
+{
+    "ChatGPT": {
+        "icon": "/icons/chatgpt.png",
+        "url": "https://chatgpt.com",
+        "description": "Use AI to answer all your questions, including school related."
+    },
+    "Discord": {
+        "icon": "/icons/discord.png",
+        "url": "https://discord.com/login",
+        "description": "Chat with all your friends on Discord in their easy-to-use server and channel based messaging application."
+    }
+}

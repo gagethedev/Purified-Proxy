@@ -1,0 +1,47 @@
+{
+    "Retro Bowl": {
+        "icon": "/icons/retro-bowl.png",
+        "description": "Guide your American football team to victory with retro-inspired gridiron strategy.",
+        "url": "https://example.com/retro-bowl"
+    },
+    "Cluster Rush": {
+        "icon": "/icons/cluster-rush.png",
+        "description": "Leap across moving trucks in this adrenaline-pumping, fast-paced platformer.",
+        "url": "https://example.com/cluster-rush"
+    },
+    "Cookie Clicker": {
+        "icon": "/icons/cookie-clicker.png",
+        "description": "Build and manage your cookie empire by clicking cookies and unlocking upgrades.",
+        "url": "https://example.com/cookie-clicker"
+    },
+    "Roblox": {
+        "icon": "/icons/roblox.png",
+        "description": "Play the unique sandbox game Roblox with your friends on your chromebook.",
+        "url": "https://example.com/roblox"
+    },
+    "GeForce Now": {
+        "icon": "/icons/geforce-now.png",
+        "description": "Access NVIDIA's GeForce NOW to play all your favorite desktop games.",
+        "url": "https://example.com/cluster-rush"
+    },
+    "Vex 6": {
+        "icon": "/icons/vex-6.png",
+        "description": "An amazing adrenaline-fueled platforming with challenges and traps.",
+        "url": "https://example.com/cookie-clicker"
+    },
+    "1v1.lol": {
+        "icon": "/icons/1v1-lol.png",
+        "description": "Multiplayer Battle Royale construction war where only the last player standing still wins.",
+        "url": "https://example.com/retro-bowl"
+    },
+    "Slope": {
+        "icon": "/icons/slope.png",
+        "description": "Navigate yourself as a ball down a slope, dodging obstacles and try to achieve the best score.",
+        "url": "https://example.com/cluster-rush"
+    },
+    "BitLife": {
+        "icon": "/icons/bitlife.png",
+        "description": "Navigate your character's life by making choices that impact their relationships, careers, and overall well-being.",
+        "url": "https://example.com/cookie-clicker"
+    }
+}
