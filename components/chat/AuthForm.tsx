@@ -12,19 +12,30 @@ interface Props {
 export default function AuthForm({ hidden }: Props) {
   const [isLogin, setIsLogin] = useState(true)
   return (
-    <Card className={`w-[350px] ${hidden ? "hidden" : ""}`}>
-      <CardHeader>
-        <CardTitle>{isLogin ? 'Login' : 'Sign Up'}</CardTitle>
+    <Card className={`w-[350px] ${hidden ? "hidden" : ""} bg-black bg-opacity-50 border border-zinc-600`}>
+      <CardHeader className="items-center">
+        <CardTitle className="text-white">{isLogin ? 'Login' : 'Sign Up'}</CardTitle>
         <CardDescription>
           {isLogin ? 'Enter your credentials to login' : 'Create a new account'}
         </CardDescription>
       </CardHeader>
       <form>
-        <CardContent className="space-y-4">
-          <div className="space-y-2">
-            <Label htmlFor="email">Email</Label>
-            <Input id="email" name="email" type="email" required />
-          </div>
+        <CardContent className="space-y-4 text-white">
+          {isLogin ? (<>
+            <div className="space-y-2">
+              <Label htmlFor="email">Email</Label>
+              <Input id="email" name="email" type="email" required />
+            </div>
+          </>) : (<>
+            <div className="space-y-2">
+              <Label htmlFor="email">Email</Label>
+              <Input id="email" name="email" type="email" required />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="username">Username</Label>
+              <Input id="username" name="username" type="text" required />
+            </div>
+          </>)}
           <div className="space-y-2">
             <Label htmlFor="password">Password</Label>
             <Input id="password" name="password" type="password" required />
@@ -43,7 +54,7 @@ export default function AuthForm({ hidden }: Props) {
           <input type="hidden" name="mode" value={isLogin ? 'login' : 'signup'} />
         </CardContent>
         <CardFooter className="flex flex-col items-start space-y-2">
-          <Button type="submit" className="w-full">
+          <Button type="submit" className="bg-gray-500 text-white w-full">
             {isLogin ? 'Login' : 'Sign Up'}
           </Button>
           {/*state?.error && (

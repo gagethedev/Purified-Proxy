@@ -7,8 +7,10 @@ import wisp from "wisp-server-node";
 import { uvPath } from "@titaniumnetwork-dev/ultraviolet";
 import { epoxyPath } from "@mercuryworkshop/epoxy-transport";
 import { baremuxPath } from "@mercuryworkshop/bare-mux/node";
-import { Server } from "socket.io";
-import { initNodeMailer } from "./components/nodemailer.js";
+//import { Server } from "socket.io";
+//import { initNodeMailer, sendVerificationEmail } from "./lib/nodemailer.js";
+//import { checkTableExists, getDbConnection, findUser, setupDB, addUser } from "./lib/db.js";
+//import { hashPassword } from "./lib/hash.js"
 
 const dev = process.env.NODE_ENV !== "production";
 const nextApp = next({ dev });
@@ -30,7 +32,7 @@ const fastify = Fastify({
 });
 
 // Initialize Socket.IO
-const io = new Server(fastify.server);
+/*const io = new Server(fastify.server);
 
 // Socket.IO connection handler
 io.on("connection", (socket) => {
@@ -48,11 +50,39 @@ io.on("connection", (socket) => {
     });
 });
 
-fastify.get("/uv/uv.config.js", async (req, res) => {
-    await handle(req.raw, reply.raw);
-    res.sent = true;
+fastify.post("/signup", async (req, res) => {
+    let body = req.body;
+    let email = body.email;
+    let displayName = body.username;
+    let username = body.username.toString().toLowerCase();
+    let password = body.password;
+    const db = getDbConnection();
+    if (!email || !username || !password) {
+        return res.status(400).send({ "error": "Missing parameters" });
+    }
+    if (await findUser(db, username, null)) {
+        console.log("found");
+        return res.status(409).send({ "error": "Username taken." })
+    } else if (await findUser(db, null, email)) {
+        console.log("found");
+        return res.status(409).send({ "error": "Email taken." })
+    }
+    let passwordHash = await hashPassword(password);
+    addUser(db, displayName, username, email, passwordHash);
+    sendVerificationEmail(email);
+    return res.status(200).send("success");
 });
 
+fastify.post("/login", async (req, res) => {
+    let body = req.body;
+    let username = body.username;
+    let password = body.password;
+})*/
+
+fastify.get("/uv/uv.config.js", async (req, res) => {
+    await handle(req.raw, res.raw);
+    res.sent = true;
+});
 
 fastify.register(fastifyStatic, {
     root: uvPath,
@@ -72,17 +102,21 @@ fastify.register(fastifyStatic, {
     decorateReply: false
 });
 
-fastify.all("/*", async (req, reply) => {
-    await handle(req.raw, reply.raw);
-    reply.sent = true;
+fastify.all("/*", async (req, res) => {
+    await handle(req.raw, res.raw);
+    res.sent = true;
 });
 
-fastify.server.on("listening", async() => {
-    await initNodeMailer();
+fastify.server.on("listening", async () => {
+    /*await initNodeMailer();
+    const db = getDbConnection();
+    if (!(await checkTableExists(db, "users")) || !(await checkTableExists(db, "messages"))) {
+        setupDB(db);
+    }*/
     const address = fastify.server.address();
     console.log("Listening on:");
     console.log(`\thttp://localhost:${address.port}`);
-    console.log(`\thttp://${hostname()}:${address.port}`);    
+    console.log(`\thttp://${hostname()}:${address.port}`);
 });
 
 process.on("SIGINT", shutdown);

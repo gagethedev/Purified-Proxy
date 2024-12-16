@@ -14,7 +14,6 @@ const navItems = [
   { name: 'Search', href: '/p' },
   { name: 'Games', href: '/g' },
   { name: 'Apps', href: '/a' },
-  { name: 'Chat', href: '/chat' }
 ]
 
 export default function Navbar() {
