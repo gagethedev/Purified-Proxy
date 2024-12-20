@@ -129,6 +129,6 @@ function shutdown() {
 }
 
 nextApp.prepare().then(() => {
-    fastify.listen({ port: 8080, host: "0.0.0.0" });
+    fastify.listen({ port: process.env.PORT || 8080, host: "0.0.0.0" });
 });
 
